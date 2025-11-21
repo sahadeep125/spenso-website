@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spenso - Track expenses, split bills with friends, and manage your money effortlessly.">
+    <meta name="keywords" content="personal finance, expense tracker, split bill, money manager, budget tracker, bill splitter, spenso">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <title>Spenso - Personal Finance & Split Bills</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'media',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
+                            light: 'rgb(var(--color-primary-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-primary-dark) / <alpha-value>)',
+                        },
+                        accent: {
+                            DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
+                            light: 'rgb(var(--color-accent-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-accent-dark) / <alpha-value>)',
+                        },
+                        success: {
+                            DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
+                            light: 'rgb(var(--color-success-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-success-dark) / <alpha-value>)',
+                        },
+                        warning: {
+                            DEFAULT: 'rgb(var(--color-warning) / <alpha-value>)',
+                            light: 'rgb(var(--color-warning-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-warning-dark) / <alpha-value>)',
+                        },
+                        error: {
+                            DEFAULT: 'rgb(var(--color-error) / <alpha-value>)',
+                            light: 'rgb(var(--color-error-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-error-dark) / <alpha-value>)',
+                        },
+                        info: {
+                            DEFAULT: 'rgb(var(--color-info) / <alpha-value>)',
+                            light: 'rgb(var(--color-info-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-info-dark) / <alpha-value>)',
+                        },
+                        background: {
+                            DEFAULT: 'rgb(var(--color-background) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-background-secondary) / <alpha-value>)',
+                            tertiary: 'rgb(var(--color-background-tertiary) / <alpha-value>)',
+                        },
+                        surface: {
+                            DEFAULT: 'rgb(var(--color-surface) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-surface-secondary) / <alpha-value>)',
+                            tertiary: 'rgb(var(--color-surface-tertiary) / <alpha-value>)',
+                        },
+                        text: {
+                            DEFAULT: 'rgb(var(--color-text) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
+                            tertiary: 'rgb(var(--color-text-tertiary) / <alpha-value>)',
+                            inverse: 'rgb(var(--color-text-inverse) / <alpha-value>)',
+                        },
+                        border: {
+                            DEFAULT: 'rgb(var(--color-border) / <alpha-value>)',
+                            light: 'rgb(var(--color-border-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-border-dark) / <alpha-value>)',
+                        },
+                        input: {
+                            background: 'rgb(var(--color-input-background) / <alpha-value>)',
+                            border: 'rgb(var(--color-input-border) / <alpha-value>)',
+                            placeholder: 'rgb(var(--color-input-placeholder) / <alpha-value>)',
+                        },
+                        button: {
+                            primary: 'rgb(var(--color-button-primary) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-button-secondary) / <alpha-value>)',
+                            disabled: 'rgb(var(--color-button-disabled) / <alpha-value>)',
+                        },
+                        icon: {
+                            DEFAULT: 'rgb(var(--color-icon) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-icon-secondary) / <alpha-value>)',
+                            tertiary: 'rgb(var(--color-icon-tertiary) / <alpha-value>)',
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* Light Mode Colors */
+            --color-primary: 0 57 164;
+            --color-primary-light: 52 94 195;
+            --color-primary-dark: 0 45 128;
+
+            --color-accent: 255 175 4;
+            --color-accent-light: 255 214 94;
+            --color-accent-dark: 226 154 0;
+
+            --color-success: 33 150 83;
+            --color-success-light: 46 204 113;
+            --color-success-dark: 27 119 66;
+
+            --color-warning: 255 181 71;
+            --color-warning-light: 255 211 123;
+            --color-warning-dark: 224 156 0;
+
+            --color-error: 231 76 60;
+            --color-error-light: 241 126 111;
+            --color-error-dark: 192 57 43;
+
+            --color-info: 0 168 214;
+            --color-info-light: 82 196 232;
+            --color-info-dark: 0 126 163;
+
+            --color-background: 245 247 250;
+            --color-background-secondary: 237 241 245;
+            --color-background-tertiary: 227 232 238;
+
+            --color-surface: 255 255 255;
+            --color-surface-secondary: 250 251 252;
+            --color-surface-tertiary: 242 244 247;
+
+            --color-text: 10 10 40;
+            --color-text-secondary: 112 124 144;
+            --color-text-tertiary: 154 163 181;
+            --color-text-inverse: 255 255 255;
+
+            --color-border: 208 215 226;
+            --color-border-light: 227 232 238;
+            --color-border-dark: 168 179 197;
+
+            --color-input-background: 255 255 255;
+            --color-input-border: 208 215 226;
+            --color-input-placeholder: 154 163 181;
+
+            --color-button-primary: 0 57 164;
+            --color-button-secondary: 242 244 247;
+            --color-button-disabled: 201 210 224;
+
+            --color-icon: 10 10 40;
+            --color-icon-secondary: 112 124 144;
+            --color-icon-tertiary: 154 163 181;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark Mode Colors */
+                --color-primary: 128 172 255;
+                --color-primary-light: 179 205 255;
+                --color-primary-dark: 77 139 255;
+
+                --color-accent: 255 175 4;
+                --color-accent-light: 255 201 74;
+                --color-accent-dark: 226 154 0;
+
+                --color-success: 39 174 96;
+                --color-success-light: 46 204 113;
+                --color-success-dark: 30 132 73;
+
+                --color-warning: 255 181 71;
+                --color-warning-light: 255 211 123;
+                --color-warning-dark: 226 154 0;
+
+                --color-error: 231 76 60;
+                --color-error-light: 241 126 111;
+                --color-error-dark: 192 57 43;
+
+                --color-info: 0 168 214;
+                --color-info-light: 76 197 242;
+                --color-info-dark: 0 126 163;
+
+                --color-background: 12 17 31;
+                --color-background-secondary: 20 26 43;
+                --color-background-tertiary: 30 37 56;
+
+                --color-surface: 24 32 56;
+                --color-surface-secondary: 31 40 66;
+                --color-surface-tertiary: 40 50 81;
+
+                --color-text: 255 255 255;
+                --color-text-secondary: 213 217 227;
+                --color-text-tertiary: 166 174 193;
+                --color-text-inverse: 12 17 31;
+
+                --color-border: 46 56 83;
+                --color-border-light: 59 70 100;
+                --color-border-dark: 30 37 56;
+
+                --color-input-background: 30 37 56;
+                --color-input-border: 46 56 83;
+                --color-input-placeholder: 166 174 193;
+
+                --color-button-primary: 52 94 195;
+                --color-button-secondary: 30 37 56;
+                --color-button-disabled: 46 56 83;
+
+                --color-icon: 255 255 255;
+                --color-icon-secondary: 213 217 227;
+                --color-icon-tertiary: 166 174 193;
+            }
+        }
+
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgb(var(--color-background)); }
+        ::-webkit-scrollbar-thumb { background: rgb(var(--color-primary-300)); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-primary-400)); }
+    </style>
+</head>
+<body class="min-h-screen bg-background font-sans text-text selection:bg-primary-100 selection:text-primary-900">
+
+    <!-- Navbar -->
+    <nav class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 border-b border-border-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <img src="assets/logo.png" alt="Spenso Logo" class="h-10 w-auto">
+                    <span class="font-bold text-xl text-text tracking-tight">Spenso</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-text-secondary hover:text-primary font-medium text-sm transition-colors">Home</a>
+                    <a href="#features" class="text-text-secondary hover:text-primary font-medium text-sm transition-colors">Features</a>
+                    <a href="#blog" class="text-text-secondary hover:text-primary font-medium text-sm transition-colors">Blog</a>
+                    <a href="#testimonials" class="text-text-secondary hover:text-primary font-medium text-sm transition-colors">Testimonials</a>
+                </div>
+
+                <div class="hidden md:flex">
+                    <button class="bg-text text-surface px-5 py-2.5 rounded-full text-sm font-medium hover:bg-text/80 transition-colors flex items-center gap-1 group">
+                        Get Started
+                        <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                    </button>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-text-secondary">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface border-t border-border-light absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block px-3 py-2 text-base font-medium text-text-secondary hover:text-primary hover:bg-background rounded-md">Home</a>
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-text-secondary hover:text-primary hover:bg-background rounded-md">Features</a>
+                <button class="w-full mt-2 bg-text text-surface px-5 py-3 rounded-full text-base font-medium hover:bg-text/80">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <div class="relative overflow-hidden bg-background pt-16 pb-32 lg:pt-24">
+            <!-- Background Blobs -->
+            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-primary-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-info-light/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold tracking-wide uppercase mb-6 border border-primary/20">
+                            Personal Finance & Split Bills
+                        </div>
+                        <h1 class="text-5xl sm:text-6xl font-bold text-text tracking-tight leading-[1.1] mb-6">
+                            Take Control of Your <span class="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Finances with Spenso</span>
+                        </h1>
+                        <p class="text-lg text-text-secondary mb-8 leading-relaxed max-w-lg">
+                            Spenso is the all-in-one personal finance app that makes managing your money simple, smart, and social. Track expenses, split bills, and monitor accounts in one place.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-4 mb-12">
+                            <button class="bg-button-primary text-white px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-primary-dark transition-colors flex items-center gap-2 shadow-lg shadow-primary/30">
+                                Download Apps <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                            <button class="bg-surface text-text-secondary border border-border px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-background transition-colors flex items-center gap-2">
+                                Explore our services
+                            </button>
+                        </div>
+
+                        <div class="border-t border-border-light pt-8">
+                            <p class="text-sm text-text-tertiary mb-4 font-medium">Trusted by 8,000+ users worldwide</p>
+                            <div class="flex flex-wrap gap-8 grayscale opacity-60">
+                                <span class="font-bold text-xl flex items-center gap-1"><div class="w-5 h-5 bg-text-secondary rounded-sm"></div> Notion</span>
+                                <span class="font-bold text-xl flex items-center gap-1"><div class="w-5 h-5 bg-text-secondary rounded-full"></div> Mailchimp</span>
+                                <span class="font-bold text-xl flex items-center gap-1"><div class="w-5 h-5 bg-text-secondary rotate-45"></div> Airtable</span>
+                                <span class="font-bold text-xl flex items-center gap-1"><div class="w-5 h-5 bg-text-secondary rounded-tr-xl"></div> Gumroad</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative flex justify-center lg:justify-end">
+                        <div class="relative z-10">
+                            <img src="assets/intro-1.png" alt="App Interface" class="w-full max-w-md rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <section id="features" class="py-24 bg-background-secondary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-primary font-semibold text-sm tracking-wide uppercase mb-2 block">Simple. Smart. Social.</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-text mb-4">Everything You Need to Manage Your Money</h2>
+                    <p class="text-text-secondary">Spenso combines personal expense tracking with social bill splitting. Manage your money and split bills with friends all in one place.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-surface rounded-3xl p-8 pb-0 overflow-hidden border border-border-light hover:shadow-xl transition-shadow flex flex-col">
+                        <div class="mb-6">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-4">
+                                <i data-lucide="pie-chart" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-text mb-2">Smart Expense Tracking</h3>
+                            <p class="text-text-secondary text-sm">Record income and expenses effortlessly with intuitive transaction management and 12+ predefined categories.</p>
+                        </div>
+                        <div class="relative mt-auto pt-4">
+                            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[220px]">
+                                <div class="relative mx-auto border-text bg-text border-[8px] rounded-[2.5rem] h-[500px] w-[280px] shadow-none scale-75 origin-top">
+                                    <div class="rounded-[2rem] overflow-hidden w-full h-full bg-surface relative">
+                                        <div class="w-full h-full overflow-hidden pt-6 bg-surface">
+                                            <div class="bg-background h-full p-4">
+                                                <div class="text-center mb-4 font-bold text-xs">Your Expenses</div>
+                                                <div class="w-32 h-32 rounded-full border-[16px] border-primary border-t-primary-light mx-auto mb-4"></div>
+                                                <div class="space-y-2">
+                                                    <div class="flex justify-between text-[10px] font-medium"><span class="flex items-center gap-1"><span class="w-2 h-2 bg-primary rounded-full"></span> Food</span> <span>$450</span></div>
+                                                    <div class="flex justify-between text-[10px] font-medium"><span class="flex items-center gap-1"><span class="w-2 h-2 bg-primary-light rounded-full"></span> Rent</span> <span>$1200</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="h-48"></div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-surface rounded-3xl p-8 pb-0 overflow-hidden border border-border-light hover:shadow-xl transition-shadow flex flex-col">
+                        <div class="mb-6">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-4">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-text mb-2">Split Bills Made Easy</h3>
+                            <p class="text-text-secondary text-sm">Create split bills for group expenses, dinners, or trips. Invite friends, track payments, and settle up seamlessly.</p>
+                        </div>
+                        <div class="relative mt-auto pt-4 flex justify-center">
+                            <div class="scale-90 origin-top translate-y-4">
+                                <div class="w-48 h-64 bg-text rounded-2xl p-3 relative rotate-[-6deg] z-10 shadow-2xl border border-text-secondary">
+                                    <div class="h-full bg-surface-secondary rounded-xl p-3">
+                                        <div class="w-full h-2 bg-border rounded mb-2"></div>
+                                        <div class="w-2/3 h-2 bg-border rounded mb-6"></div>
+                                        <div class="w-full h-24 bg-primary/20 rounded-lg border border-primary/50 mb-2"></div>
+                                    </div>
+                                </div>
+                                <div class="w-48 h-64 bg-surface rounded-2xl p-3 absolute top-0 left-8 rotate-[6deg] shadow-xl border border-border">
+                                    <div class="h-full bg-background rounded-xl p-3">
+                                        <div class="text-xs font-bold mb-2">Monthly Budget</div>
+                                        <div class="text-2xl font-bold text-primary mb-1">$2,400</div>
+                                        <div class="w-full bg-border-light h-2 rounded-full mb-2"><div class="w-[75%] bg-primary h-2 rounded-full"></div></div>
+                                        <div class="text-[10px] text-text-tertiary">75% Used</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="h-48"></div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-surface rounded-3xl p-8 pb-0 overflow-hidden border border-border-light hover:shadow-xl transition-shadow flex flex-col">
+                        <div class="mb-6">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-4">
+                                <i data-lucide="wallet" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-text mb-2">Multi-Account Management</h3>
+                            <p class="text-text-secondary text-sm">Manage multiple bank accounts, cash, and credit cards from one dashboard. Track balances and billing cycles.</p>
+                        </div>
+                        <div class="relative mt-auto pt-8 px-4">
+                            <div class="bg-gradient-to-br from-primary to-primary-dark rounded-t-2xl p-6 text-white shadow-2xl h-48 transform transition-transform hover:-translate-y-2">
+                                <div class="flex justify-between items-start mb-8">
+                                    <div class="w-10 h-6 bg-white/20 rounded"></div>
+                                    <span class="text-xs font-mono opacity-70">0901</span>
+                                </div>
+                                <div class="text-lg font-mono tracking-widest mb-2">**** **** **** 4821</div>
+                                <div class="flex justify-between items-end">
+                                    <div>
+                                        <div class="text-[10px] opacity-70 uppercase">Balance</div>
+                                        <div class="font-bold text-xl">12,510.00 €</div>
+                                    </div>
+                                    <div class="font-bold italic">VISA</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <button class="inline-flex items-center gap-2 bg-primary/10 text-primary-dark px-6 py-3 rounded-full font-semibold text-sm hover:bg-primary/20 transition-colors">
+                        Explore All Features <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-24 bg-gradient-to-br from-primary to-primary-dark text-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    
+                    <!-- Left: Phone Mockup -->
+                    <div class="relative hidden lg:block flex justify-center">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
+                        <div class="relative z-10">
+                             <img src="assets/intro-3.png" alt="How It Works" class="w-full max-w-xs rounded-[2.5rem] shadow-2xl border-8 border-text">
+                        </div>
+                    </div>
+
+                    <!-- Right: Content -->
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-6 backdrop-blur-sm border border-white/10">
+                            How It Works
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Get Started in Minutes</h2>
+                        <p class="text-primary-100 mb-12 text-lg">Join thousands of users who are already simplifying their finances with Spenso.</p>
+
+                        <div class="space-y-8">
+                            <div class="flex gap-4">
+                                <div class="mt-1">
+                                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm">
+                                        <i data-lucide="user-plus" class="w-6 h-6"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Sign Up in Seconds</h3>
+                                    <p class="text-primary-100 text-sm leading-relaxed">Create your free account with your email and get started instantly.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="mt-1">
+                                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm">
+                                        <i data-lucide="file-bar-chart" class="w-6 h-6"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Set Up Your Accounts</h3>
+                                    <p class="text-primary-100 text-sm leading-relaxed">Add your bank accounts, cash, and credit cards to get a complete financial overview.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="mt-1">
+                                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm">
+                                        <i data-lucide="credit-card" class="w-6 h-6"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Start Tracking & Splitting</h3>
+                                    <p class="text-primary-100 text-sm leading-relaxed">Record expenses, create split bills with friends, and watch your financial awareness grow.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12">
+                            <button class="bg-surface text-primary px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-background transition-colors inline-flex items-center gap-2 shadow-lg">
+                                Try it for Free <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="py-24 bg-surface">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-semibold text-xs tracking-wide uppercase mb-2 block">Why Choose Us</span>
+                    <h2 class="text-3xl font-bold text-text mb-4">Why Choose Spenso?</h2>
+                    <p class="text-text-secondary max-w-2xl mx-auto">Unlike other apps, Spenso combines personal finance with social bill splitting in one seamless experience.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
+                            <i data-lucide="clock" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-text mb-3">Combined Functionality</h3>
+                        <p class="text-text-tertiary text-sm leading-relaxed">No need to switch between apps. Manage your personal money and split bills with friends all in one place.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
+                            <i data-lucide="bar-chart-2" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-text mb-3">Secure & Private</h3>
+                        <p class="text-text-tertiary text-sm leading-relaxed">Bank-level security with encrypted data storage. No financial institution connections required - your privacy is our priority.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
+                            <i data-lucide="briefcase" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-text mb-3">Multi-Currency Support</h3>
+                        <p class="text-text-tertiary text-sm leading-relaxed">Choose your preferred currency from USD, EUR, GBP, INR, or JPY for a consistent experience.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <button class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-primary-dark transition-colors shadow-lg shadow-primary/30">
+                        See Full Features <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- FAQ -->
+        <section class="py-24 bg-background-secondary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full bg-surface border border-border text-text-tertiary text-xs font-semibold mb-4">FAQ</span>
+                    <h2 class="text-3xl font-bold text-text mb-4">Frequently Asked Questions</h2>
+                    <p class="text-text-secondary">Got questions? We've got answers to help you feel confident with Spenso.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-5xl mx-auto" id="faq-container">
+                    <!-- FAQs will be populated by JS or static HTML -->
+                    <div class="space-y-2">
+                        <div class="border-b border-border-light py-4 faq-item">
+                            <button class="w-full flex justify-between items-center text-left py-2 focus:outline-none" onclick="toggleFaq(this)">
+                                <span class="font-semibold text-text text-sm md:text-base">What is Spenso?</span>
+                                <span class="ml-4 p-1 rounded-full transition-colors bg-background text-text-secondary icon-container">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                </span>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 mt-0 faq-answer">
+                                <p class="text-text-secondary text-sm leading-relaxed pb-2 pr-8">
+                                    Spenso is an all-in-one personal finance app that helps you track expenses, split bills with friends, and manage multiple accounts in one place.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="border-b border-border-light py-4 faq-item">
+                            <button class="w-full flex justify-between items-center text-left py-2 focus:outline-none" onclick="toggleFaq(this)">
+                                <span class="font-semibold text-text text-sm md:text-base">Is Spenso free to use?</span>
+                                <span class="ml-4 p-1 rounded-full transition-colors bg-background text-text-secondary icon-container">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                </span>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 mt-0 faq-answer">
+                                <p class="text-text-secondary text-sm leading-relaxed pb-2 pr-8">
+                                    Yes! Spenso is free to download and use. You can track expenses, split bills, and manage accounts without any cost.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="border-b border-border-light py-4 faq-item">
+                            <button class="w-full flex justify-between items-center text-left py-2 focus:outline-none" onclick="toggleFaq(this)">
+                                <span class="font-semibold text-text text-sm md:text-base">Is my data secure?</span>
+                                <span class="ml-4 p-1 rounded-full transition-colors bg-background text-text-secondary icon-container">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                </span>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 mt-0 faq-answer">
+                                <p class="text-text-secondary text-sm leading-relaxed pb-2 pr-8">
+                                    Absolutely. We use bank-level encryption to protect your data. We do not connect directly to your bank accounts, ensuring your privacy.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="border-b border-border-light py-4 faq-item">
+                            <button class="w-full flex justify-between items-center text-left py-2 focus:outline-none" onclick="toggleFaq(this)">
+                                <span class="font-semibold text-text text-sm md:text-base">Can I split bills with friends who don't have Spenso?</span>
+                                <span class="ml-4 p-1 rounded-full transition-colors bg-background text-text-secondary icon-container">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                </span>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 mt-0 faq-answer">
+                                <p class="text-text-secondary text-sm leading-relaxed pb-2 pr-8">
+                                    For the best experience, your friends should have Spenso. However, you can still track who owes you money manually within the app.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="border-b border-border-light py-4 faq-item">
+                            <button class="w-full flex justify-between items-center text-left py-2 focus:outline-none" onclick="toggleFaq(this)">
+                                <span class="font-semibold text-text text-sm md:text-base">What currencies do you support?</span>
+                                <span class="ml-4 p-1 rounded-full transition-colors bg-background text-text-secondary icon-container">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                </span>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 mt-0 faq-answer">
+                                <p class="text-text-secondary text-sm leading-relaxed pb-2 pr-8">
+                                    Spenso supports multiple currencies including USD, EUR, GBP, INR, and JPY. You can choose your preferred currency in settings.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="border-b border-border-light py-4 faq-item">
+                            <button class="w-full flex justify-between items-center text-left py-2 focus:outline-none" onclick="toggleFaq(this)">
+                                <span class="font-semibold text-text text-sm md:text-base">How do I contact support?</span>
+                                <span class="ml-4 p-1 rounded-full transition-colors bg-background text-text-secondary icon-container">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                </span>
+                            </button>
+                            <div class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 mt-0 faq-answer">
+                                <p class="text-text-secondary text-sm leading-relaxed pb-2 pr-8">
+                                    You can reach our support team by emailing support@spenso.app. We're here to help!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-surface pt-12 pb-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- CTA Card -->
+                <div class="bg-gradient-to-r from-primary-300 to-primary-dark rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden mb-20">
+                     <!-- Abstract Phone visual -->
+                     <div class="absolute right-0 bottom-0 w-1/3 h-full hidden md:block">
+                         <div class="relative h-full w-full">
+                             <div class="absolute bottom-[-50px] right-[40px] rotate-[-10deg]">
+                                 <img src="https://picsum.photos/280/500?random=99" class="rounded-[2.5rem] border-[8px] border-text shadow-2xl w-[240px]" alt="App Screenshot" />
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="relative z-10 max-w-2xl">
+                        <h2 class="text-3xl md:text-4xl font-bold text-text mb-4 leading-tight">
+                            Start Managing Your Finances <br/> with Confidence
+                        </h2>
+                        <p class="text-text-secondary mb-8 max-w-md">
+                            Take control of your income, expenses, and financial future — it all begins with the right tools.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-3 max-w-md">
+                            <div class="bg-surface rounded-full p-1.5 pl-6 flex-grow flex items-center shadow-lg">
+                                <input type="email" placeholder="Enter Your Email" class="flex-grow bg-transparent outline-none text-text text-sm placeholder-text-tertiary" />
+                                <button class="bg-button-primary text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark transition-colors flex items-center gap-2">
+                                    Subscribe <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+                <!-- Main Footer Content -->
+                <div class="grid md:grid-cols-12 gap-12 border-b border-border-light pb-12">
+                    <div class="md:col-span-5">
+                        <div class="flex items-center gap-2 mb-6">
+                            <img src="assets/logo.png" alt="Spenso Logo" class="h-8 w-auto">
+                            <span class="font-bold text-lg text-text">Spenso</span>
+                        </div>
+                        <div class="flex gap-4 mb-8">
+                            <a href="#" class="text-text-tertiary hover:text-primary transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                            <a href="#" class="text-text-tertiary hover:text-primary transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                            <a href="#" class="text-text-tertiary hover:text-primary transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                            <a href="#" class="text-text-tertiary hover:text-primary transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        </div>
+                        <p class="text-text-tertiary text-sm mb-8 max-w-xs">Your complete personal finance companion for a healthier, organized financial life.</p>
+                        <button class="bg-text text-surface px-6 py-3 rounded-full text-sm font-medium hover:bg-text/80 transition-colors flex items-center gap-2 w-fit">
+                            Download Apps <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <h4 class="font-bold text-text mb-6 text-sm">Features</h4>
+                        <ul class="space-y-4 text-sm text-text-tertiary">
+                            <li><a href="#" class="hover:text-primary">Templates</a></li>
+                            <li><a href="#" class="hover:text-primary">How It Works</a></li>
+                            <li><a href="#" class="hover:text-primary">For Teams</a></li>
+                            <li><a href="#" class="hover:text-primary">Financial Reports</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <h4 class="font-bold text-text mb-6 text-sm">Resources</h4>
+                        <ul class="space-y-4 text-sm text-text-tertiary">
+                            <li><a href="#" class="hover:text-primary">Help Center</a></li>
+                            <li><a href="#" class="hover:text-primary">Blog</a></li>
+                            <li><a href="#" class="hover:text-primary">Guides & Tutorials</a></li>
+                            <li><a href="#" class="hover:text-primary">Product Updates</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="md:col-span-3">
+                        <h4 class="font-bold text-text mb-6 text-sm">Company</h4>
+                        <ul class="space-y-4 text-sm text-text-tertiary">
+                            <li><a href="#" class="hover:text-primary">About Us</a></li>
+                            <li><a href="#" class="hover:text-primary">Careers</a></li>
+                            <li><a href="#" class="hover:text-primary">Contact</a></li>
+                            <li><a href="#" class="hover:text-primary">Our Team</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="text-xs text-text-tertiary flex gap-6">
+                        <a href="terms.html" class="hover:text-text-secondary">Terms of Service</a>
+                        <a href="#" class="hover:text-text-secondary">Cookies Settings</a>
+                        <a href="privacy-policy.html" class="hover:text-text-secondary">Privacy Policy</a>
+                    </div>
+                    <div class="text-xs text-text-tertiary">
+                        @2025 Spenso - All Rights Reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

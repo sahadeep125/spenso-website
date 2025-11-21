@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spenso Terms and Conditions - Read our terms of service">
+    <meta name="robots" content="index, follow">
+    <title>Terms and Conditions - Spenso</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'media',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
+                            light: 'rgb(var(--color-primary-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-primary-dark) / <alpha-value>)',
+                        },
+                        background: {
+                            DEFAULT: 'rgb(var(--color-background) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-background-secondary) / <alpha-value>)',
+                        },
+                        surface: {
+                            DEFAULT: 'rgb(var(--color-surface) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-surface-secondary) / <alpha-value>)',
+                        },
+                        text: {
+                            DEFAULT: 'rgb(var(--color-text) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
+                            tertiary: 'rgb(var(--color-text-tertiary) / <alpha-value>)',
+                        },
+                        border: {
+                            DEFAULT: 'rgb(var(--color-border) / <alpha-value>)',
+                            light: 'rgb(var(--color-border-light) / <alpha-value>)',
+                        },
+                        button: {
+                            primary: 'rgb(var(--color-button-primary) / <alpha-value>)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* Light Mode Colors */
+            --color-primary: 0 57 164;
+            --color-primary-light: 52 94 195;
+            --color-primary-dark: 0 45 128;
+
+            --color-background: 245 247 250;
+            --color-background-secondary: 237 241 245;
+
+            --color-surface: 255 255 255;
+            --color-surface-secondary: 250 251 252;
+
+            --color-text: 10 10 40;
+            --color-text-secondary: 112 124 144;
+            --color-text-tertiary: 154 163 181;
+
+            --color-border: 208 215 226;
+            --color-border-light: 227 232 238;
+            
+            --color-button-primary: 0 57 164;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark Mode Colors */
+                --color-primary: 128 172 255;
+                --color-primary-light: 179 205 255;
+                --color-primary-dark: 77 139 255;
+
+                --color-background: 12 17 31;
+                --color-background-secondary: 20 26 43;
+
+                --color-surface: 24 32 56;
+                --color-surface-secondary: 31 40 66;
+
+                --color-text: 255 255 255;
+                --color-text-secondary: 213 217 227;
+                --color-text-tertiary: 166 174 193;
+
+                --color-border: 46 56 83;
+                --color-border-light: 59 70 100;
+                
+                --color-button-primary: 52 94 195;
+            }
+        }
+
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgb(var(--color-background)); }
+        ::-webkit-scrollbar-thumb { background: rgb(var(--color-primary-light)); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-primary)); }
+    </style>
+</head>
+<body class="min-h-screen bg-background font-sans text-text selection:bg-primary-light selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 border-b border-border-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer">
+                    <img src="assets/logo.png" alt="Spenso Logo" class="h-10 w-auto">
+                    <span class="font-bold text-xl text-text tracking-tight">Spenso</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-text-secondary hover:text-primary font-medium text-sm transition-colors">Home</a>
+                    <a href="index.html#features" class="text-text-secondary hover:text-primary font-medium text-sm transition-colors">Features</a>
+                    <a href="terms.html" class="text-primary font-medium text-sm transition-colors">Terms</a>
+                </div>
+
+                <div class="hidden md:flex">
+                    <button class="bg-text text-surface px-5 py-2.5 rounded-full text-sm font-medium hover:bg-text/80 transition-colors flex items-center gap-1 group">
+                        Get Started
+                        <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div class="bg-surface rounded-3xl p-8 md:p-12 shadow-sm border border-border-light">
+            <h1 class="text-4xl font-bold text-primary mb-8">Terms and Conditions</h1>
+            <p class="text-text-tertiary italic mb-8 pb-8 border-b border-border-light">Last updated: November 2024</p>
+
+            <div class="space-y-12">
+                <section>
+                    <h2 class="text-2xl font-bold text-text mb-4">1. Introduction</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        Welcome to Spenso. These Terms and Conditions ("Terms") govern your use of the Spenso mobile application (the "App") 
+                        operated by Spenso ("us", "we", or "our").
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        By accessing or using the App, you agree to be bound by these Terms. If you disagree with any part of the terms, 
+                        then you may not access the App.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-text mb-4">2. Use of the App</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        Spenso is a personal finance and bill-splitting application. You agree to use the App only for lawful purposes 
+                        and in accordance with these Terms. You are responsible for all activities that occur under your account.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-text mb-4">3. User Accounts</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        When you create an account with us, you must provide information that is accurate, complete, and current at all times. 
+                        Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our App.
+                    </p>
+                    <p class="text-text-secondary leading-relaxed">
+                        You are responsible for safeguarding the password that you use to access the App and for any activities or actions 
+                        under your password.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-text mb-4">4. Intellectual Property</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        The App and its original content (excluding Content provided by users), features, and functionality are and will remain 
+                        the exclusive property of Spenso and its licensors. The App is protected by copyright, trademark, and other laws of 
+                        both the United States and foreign countries.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-text mb-4">5. Termination</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, 
+                        including without limitation if you breach the Terms. Upon termination, your right to use the App will immediately cease.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-text mb-4">6. Limitation of Liability</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        In no event shall Spenso, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any 
+                        indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, 
+                        data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the App.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-text mb-4">7. Changes to Terms</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material 
+                        we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change 
+                        will be determined at our sole discretion.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-text mb-4">8. Contact Us</h2>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        If you have any questions about these Terms, please contact us:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 text-text-secondary">
+                        <li><strong class="text-text">Email:</strong> <a href="mailto:support@spenso.app" class="text-primary hover:underline">support@spenso.app</a></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface pt-12 pb-8 border-t border-border-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-12 border-b border-border-light pb-12">
+                <div class="md:col-span-5">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="assets/logo.png" alt="Spenso Logo" class="h-8 w-auto">
+                        <span class="font-bold text-lg text-text">Spenso</span>
+                    </div>
+                    <p class="text-text-tertiary text-sm mb-8 max-w-xs">Your complete personal finance companion for a healthier, organized financial life.</p>
+                </div>
+
+                <div class="md:col-span-2">
+                    <h4 class="font-bold text-text mb-6 text-sm">Legal</h4>
+                    <ul class="space-y-4 text-sm text-text-tertiary">
+                        <li><a href="privacy-policy.html" class="hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-primary">Terms of Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-2">
+                    <h4 class="font-bold text-text mb-6 text-sm">Contact</h4>
+                    <ul class="space-y-4 text-sm text-text-tertiary">
+                        <li><a href="mailto:support@spenso.app" class="hover:text-primary">support@spenso.app</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-xs text-text-tertiary">
+                    @2025 Spenso - All Rights Reserved
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
