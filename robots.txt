@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sahadeep125.github.io/spenso-website/sitemap.xml
