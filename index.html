@@ -27,8 +27,20 @@
     <meta name="twitter:title" content="Spenso - Take Control of Your Finances">
     <meta name="twitter:description" content="Spenso helps you track expenses, split bills, manage budgets, and achieve your financial goals — all in one simple app. Free, secure, and privacy-focused.">
     <meta name="twitter:image" content="assets/spenso-landing-image.png">
+    
+    <!-- Google Fonts - Distinctive Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons - Modern & Clean -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Font Awesome for Play Store icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -38,26 +50,250 @@
                         heading: '#0A0A28',
                         secondary: '#707C90',
                         lightBg: '#F0F4FF',
+                        // Glass Design System Colors
+                        glass: {
+                            white: 'rgba(255, 255, 255, 0.7)',
+                            light: 'rgba(255, 255, 255, 0.4)',
+                            border: 'rgba(255, 255, 255, 0.18)',
+                            dark: 'rgba(10, 10, 40, 0.03)',
+                        },
+                        accent: {
+                            blue: '#3B82F6',
+                            indigo: '#6366F1',
+                            violet: '#8B5CF6',
+                            emerald: '#10B981',
+                            amber: '#F59E0B',
+                            rose: '#F43F5E',
+                            cyan: '#06B6D4',
+                            teal: '#14B8A6',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'scale-in': 'scaleIn 0.5s ease-out forwards',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { opacity: '0.5' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
                         }
+                    },
+                    backdropBlur: {
+                        xs: '2px',
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        /* ===== DESIGN SYSTEM ===== */
+        :root {
+            /* Typography Scale */
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            
+            /* Colors */
+            --color-primary: #0039A4;
+            --color-primary-light: #3B6FD9;
+            --color-heading: #0A0A28;
+            --color-secondary: #707C90;
+            --color-bg-light: #F8FAFC;
+            
+            /* Glass Effects */
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-bg-strong: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --glass-shadow: 0 8px 32px rgba(0, 57, 164, 0.08);
+            --glass-blur: 16px;
+            
+            /* Spacing */
+            --section-padding: clamp(4rem, 8vw, 7rem);
+        }
+        
+        /* Base Styles */
+        body { 
+            font-family: var(--font-body);
+            color: var(--color-heading);
+            background: var(--color-bg-light);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+        }
+        
+        /* Glass Card Base */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+        
+        .glass-card-strong {
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 4px 24px rgba(0, 57, 164, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Glass Icon Container */
+        .glass-icon {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 100%);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 4px 16px rgba(0, 57, 164, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Feature Card Hover Effect */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 20px 40px rgba(0, 57, 164, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Review Card */
+        .review-card {
+            transition: all 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 
+                0 24px 48px rgba(0, 57, 164, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Stats Card */
+        .stats-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, #6366F1 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .stats-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Section Backgrounds */
+        .section-gradient {
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F0F4FF 100%);
+        }
+        
+        .section-gradient-alt {
+            background: linear-gradient(180deg, #F0F4FF 0%, #F8FAFC 50%, #FFFFFF 100%);
+        }
+        
+        /* Mesh Gradient Background */
+        .mesh-gradient {
+            background: 
+                radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.08) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(139, 92, 246, 0.05) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, rgba(6, 182, 212, 0.05) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, rgba(245, 158, 11, 0.04) 0px, transparent 50%),
+                linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+        }
+        
+        /* Noise Texture Overlay */
+        .noise-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+        
+        /* CTA Section Gradient */
+        .cta-gradient {
+            background: linear-gradient(135deg, #0039A4 0%, #3B6FD9 50%, #6366F1 100%);
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            box-shadow: 
+                0 4px 14px rgba(0, 57, 164, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 24px rgba(0, 57, 164, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Stagger Animation Delays */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+        
+        /* Hero specific styles (keeping original) */
         .gradient-bg { background: linear-gradient(135deg, #E8EFFF 0%, #F8FAFF 50%, #EEF4FF 100%); }
         .phone-shadow { box-shadow: 0 25px 50px -12px rgba(0, 57, 164, 0.25); }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -15px rgba(0, 57, 164, 0.2); }
     </style>
 </head>
 <body class="bg-white">
@@ -74,33 +310,33 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="#features" class="text-secondary hover:text-primary transition-colors">Features</a>
-                    <a href="#how-it-works" class="text-secondary hover:text-primary transition-colors">How It Works</a>
-                    <a href="#reviews" class="text-secondary hover:text-primary transition-colors">Reviews</a>
-                    <a href="#download" class="text-secondary hover:text-primary transition-colors">Download</a>
+                    <a href="#features" class="font-body text-secondary hover:text-primary transition-colors font-medium">Features</a>
+                    <a href="#how-it-works" class="font-body text-secondary hover:text-primary transition-colors font-medium">How It Works</a>
+                    <a href="#reviews" class="font-body text-secondary hover:text-primary transition-colors font-medium">Reviews</a>
+                    <a href="#download" class="font-body text-secondary hover:text-primary transition-colors font-medium">Download</a>
                 </nav>
 
                 <!-- CTA Button -->
-                <a href="#download" class="hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-medium hover:bg-primary/90 transition-colors">
+                <a href="#download" class="hidden md:flex items-center gap-2 btn-primary text-white px-5 py-2.5 rounded-full font-display font-medium">
                     <i class="fab fa-google-play text-sm"></i>
                     Get the App
                 </a>
 
                 <!-- Mobile Menu Button -->
                 <button class="md:hidden p-2 text-heading" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars text-xl"></i>
+                    <i class="ph ph-list text-2xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100">
+        <div id="mobileMenu" class="hidden md:hidden glass-card-strong border-t border-white/20">
             <div class="px-4 py-4 space-y-3">
-                <a href="#features" class="block py-2 text-secondary hover:text-primary">Features</a>
-                <a href="#how-it-works" class="block py-2 text-secondary hover:text-primary">How It Works</a>
-                <a href="#reviews" class="block py-2 text-secondary hover:text-primary">Reviews</a>
-                <a href="#download" class="block py-2 text-secondary hover:text-primary">Download</a>
-                <a href="#download" class="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 rounded-full font-medium mt-4">
+                <a href="#features" class="block py-2 font-body text-secondary hover:text-primary font-medium">Features</a>
+                <a href="#how-it-works" class="block py-2 font-body text-secondary hover:text-primary font-medium">How It Works</a>
+                <a href="#reviews" class="block py-2 font-body text-secondary hover:text-primary font-medium">Reviews</a>
+                <a href="#download" class="block py-2 font-body text-secondary hover:text-primary font-medium">Download</a>
+                <a href="#download" class="flex items-center justify-center gap-2 btn-primary text-white px-5 py-3 rounded-full font-display font-medium mt-4">
                     <i class="fab fa-google-play"></i>
                     Get the App
                 </a>
@@ -108,7 +344,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (UNCHANGED) -->
     <section class="relative pt-28 md:pt-25 overflow-hidden bg-gradient-to-br from-[#F8FAFC] via-[#F0F4FF] to-[#EEF4FF]">
         <!-- Background Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-transparent to-purple-50/20"></div>
@@ -180,438 +416,450 @@
     </section>
 
     <!-- All Features Section -->
-    <section id="features" class="py-16 md:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-heading mb-6 max-w-4xl mx-auto !leading-[1.3]">
-                    Packed with Powerful Features
+    <section id="features" class="py-20 md:py-28 mesh-gradient relative noise-overlay">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-primary font-display font-medium text-sm mb-6">
+                    <i class="ph-fill ph-sparkle"></i>
+                    Powerful Features
+                </span>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-heading mb-5 max-w-3xl mx-auto !leading-[1.2]">
+                    Everything You Need to Master Your Money
                 </h2>
-                <p class="text-secondary max-w-2xl mx-auto">
-                    Everything you need to manage your personal finances in one app
+                <p class="font-body text-secondary text-lg max-w-2xl mx-auto">
+                    All the tools for personal finance management, beautifully designed in one app
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                 <!-- Multi-Account -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-credit-card text-xl text-primary"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-1">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-credit-card text-2xl text-primary"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">Multi-Account Management</h3>
-                        <p class="text-sm text-secondary">Manage multiple bank accounts and credit cards from one dashboard.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Multi-Account Management</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Manage multiple bank accounts and credit cards from one unified dashboard.</p>
                 </div>
 
                 <!-- Recurring -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-sync-alt text-xl text-green-600"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-2">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-arrows-clockwise text-2xl text-emerald-500"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">Recurring Transactions</h3>
-                        <p class="text-sm text-secondary">Set up recurring bills and income with auto-create or reminders.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Recurring Transactions</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Set up recurring bills and income with auto-create or smart reminders.</p>
                 </div>
 
                 <!-- Budget -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-bullseye text-xl text-orange-500"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-3">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-target text-2xl text-amber-500"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">Smart Budget Management</h3>
-                        <p class="text-sm text-secondary">Set flexible budgets by category. Track progress with visual alerts.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Smart Budget Management</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Set flexible budgets by category. Track progress with visual alerts.</p>
                 </div>
 
                 <!-- Analytics -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-chart-pie text-xl text-purple-600"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-4">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-chart-pie-slice text-2xl text-violet-500"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">Spending Analytics</h3>
-                        <p class="text-sm text-secondary">Interactive charts to understand your spending habits.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Spending Analytics</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Interactive charts to understand your spending habits at a glance.</p>
                 </div>
 
                 <!-- Search -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-search text-xl text-red-500"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-5">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-magnifying-glass text-2xl text-rose-500"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">Advanced Search & Filter</h3>
-                        <p class="text-sm text-secondary">Find any transaction instantly with powerful search options.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Advanced Search & Filter</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Find any transaction instantly with powerful search options.</p>
                 </div>
 
                 <!-- Multi-Currency -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-globe text-xl text-teal-600"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-6">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-globe-hemisphere-west text-2xl text-teal-500"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">Multi-Currency Support</h3>
-                        <p class="text-sm text-secondary">USD, EUR, GBP, INR, and JPY supported for your convenience.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Multi-Currency Support</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">USD, EUR, GBP, INR, and JPY supported for global convenience.</p>
                 </div>
 
                 <!-- Notifications -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-bell text-xl text-yellow-600"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-1">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-bell-ringing text-2xl text-yellow-500"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">Smart Notifications</h3>
-                        <p class="text-sm text-secondary">Timely reminders for bills, due dates, and budget alerts.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Smart Notifications</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Timely reminders for bills, due dates, and budget alerts.</p>
                 </div>
 
                 <!-- Friends -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-user-friends text-xl text-pink-600"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-2">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-users-three text-2xl text-pink-500"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">Friends & Settlements</h3>
-                        <p class="text-sm text-secondary">Track shared expenses and settle up with a single tap.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Friends & Settlements</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Track shared expenses and settle up with a single tap.</p>
                 </div>
 
                 <!-- Categories -->
-                <div class="flex gap-4 p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-tags text-xl text-indigo-600"></i>
+                <div class="feature-card glass-card-strong p-6 rounded-3xl reveal stagger-3">
+                    <div class="glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-5">
+                        <i class="ph-fill ph-tag text-2xl text-indigo-500"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-heading mb-1">12+ Categories</h3>
-                        <p class="text-sm text-secondary">Predefined and custom categories to match your lifestyle.</p>
-                    </div>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">12+ Categories</h3>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Predefined and custom categories to match your lifestyle.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Download CTA Section -->
-    <section id="download" class="py-16 md:py-18 bg-gradient-to-r  from-[#74a1f4] via-[#9796f0] to-[#fbc7d4] relative overflow-hidden">
+    <section id="download" class="py-20 md:py-24 cta-gradient relative overflow-hidden">
         <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-10 left-10 w-40 h-40 border-2 border-white rounded-full"></div>
-            <div class="absolute bottom-10 right-10 w-60 h-60 border-2 border-white rounded-full"></div>
-            <div class="absolute top-1/2 left-1/3 w-32 h-32 border-2 border-white rounded-full"></div>
+        <div class="absolute inset-0">
+            <div class="absolute top-10 left-10 w-40 h-40 border border-white/10 rounded-full"></div>
+            <div class="absolute bottom-10 right-10 w-60 h-60 border border-white/10 rounded-full"></div>
+            <div class="absolute top-1/2 left-1/3 w-32 h-32 border border-white/10 rounded-full"></div>
+            <div class="absolute top-20 right-1/4 w-24 h-24 border border-white/8 rounded-full"></div>
+            <div class="absolute bottom-1/3 left-20 w-16 h-16 border border-white/5 rounded-full"></div>
         </div>
 
+        <!-- Animated Gradient Orbs -->
         <div class="absolute inset-0 overflow-hidden">
-            <!-- Top Left Blue Blob -->
-            <div class="absolute -top-32 -left-32 w-96 h-96 bg-[#74a1f4]/40 rounded-full blur-3xl animate-pulse"></div>
-            <!-- Top Right Indigo Blob -->
-            <div class="absolute -top-32 -right-32 w-96 h-96 bg-[#74a1f4]/40 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-            <!-- Bottom Left/Center Purple Blob -->
-            <div class="absolute -bottom-32 left-1/4 w-96 h-96 bg-[#74a1f4]/50 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
-            <!-- Additional Gradient Blobs for Richer Effect -->
-            <div class="absolute top-1/4 -right-48 w-80 h-80 bg-[#74a1f4]/30 rounded-full blur-2xl animate-pulse" style="animation-delay: 0.5s;"></div>
-            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-[#74a1f4]/25 rounded-full blur-2xl animate-pulse" style="animation-delay: 1.5s;"></div>
-            <div class="absolute top-3/4 right-1/4 w-64 h-64 bg-[#74a1f4]/35 rounded-full blur-2xl animate-pulse" style="animation-delay: 2.5s;"></div>
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-white/3 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="flex-1 text-center">
-                    <h2 class="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-white mb-6 max-w-4xl mx-auto !leading-[1.3]">
-                        Download Spenso &<br>Take Control Today
-                    </h2>
-                    <p class="text-lg text-white/80 mb-8 max-w-xl text-center mx-auto">
-                        Join thousands of users who are simplifying their finances with Spenso. Free to download, no hidden costs.
-                    </p>
-                    
+            <div class="flex flex-col items-center text-center">
+                <div class="reveal">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 font-display font-medium text-sm mb-8">
+                        <i class="ph-fill ph-rocket-launch"></i>
+                        Start Your Journey
+                    </span>
+                </div>
                 
-                <!-- Download Buttons -->
-                <div class="flex flex-col sm:flex-row items-center justify-center mb-8">
-                    <a href="#download" class="flex items-center gap-3 bg-heading text-white px-6 py-2.5 rounded-xl hover:bg-heading/90 transition-colors shadow-lg">
-                        <i class="fab fa-google-play text-2xl"></i>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6 max-w-3xl !leading-[1.2] reveal">
+                    Download Spenso & Take Control Today
+                </h2>
+                <p class="font-body text-lg text-white/80 mb-10 max-w-xl reveal">
+                    Join thousands of users who are simplifying their finances with Spenso. Free to download, no hidden costs.
+                </p>
+                
+                <!-- Download Button -->
+                <div class="reveal">
+                    <a href="#" class="inline-flex items-center gap-3 bg-white text-heading px-8 py-4 rounded-2xl hover:bg-white/95 transition-all shadow-2xl hover:shadow-white/20 hover:-translate-y-1">
+                        <i class="fab fa-google-play text-3xl text-primary"></i>
                         <div class="text-left">
-                            <div class="text-xs opacity-80">Get it on</div>
-                            <div class="font-semibold text-base">Google Play</div>
+                            <div class="text-xs text-secondary font-body">Get it on</div>
+                            <div class="font-display font-semibold text-lg">Google Play</div>
                         </div>
                     </a>
                 </div>
+                
+                <!-- Trust Indicators -->
+                <div class="flex items-center gap-8 mt-12 reveal">
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i class="ph-fill ph-shield-check text-xl"></i>
+                        <span class="font-body text-sm">100% Secure</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i class="ph-fill ph-lock text-xl"></i>
+                        <span class="font-body text-sm">Privacy First</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i class="ph-fill ph-star text-xl"></i>
+                        <span class="font-body text-sm">4.8 Rating</span>
+                    </div>
                 </div>
-
-               
             </div>
         </div>
     </section>
 
     <!-- Perfect For Section -->
-    <section class="py-16 md:py-24 bg-white" id="how-it-works">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-heading mb-6 max-w-4xl mx-auto !leading-[1.3]">
+    <section class="py-20 md:py-28 section-gradient relative noise-overlay" id="how-it-works">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-primary font-display font-medium text-sm mb-6">
+                    <i class="ph-fill ph-users"></i>
+                    For Everyone
+                </span>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-heading mb-5 max-w-3xl mx-auto !leading-[1.2]">
                     Perfect For Everyone
                 </h2>
-                <p class="text-secondary max-w-2xl mx-auto">
+                <p class="font-body text-secondary text-lg max-w-2xl mx-auto">
                     Whether you're a student, professional, or anyone in between
                 </p>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-gray-100 text-center">
-                    <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user text-2xl text-primary"></i>
+                <div class="feature-card glass-card-strong p-8 rounded-3xl text-center reveal stagger-1">
+                    <div class="glass-icon w-18 h-18 w-[72px] h-[72px] rounded-2xl flex items-center justify-center mx-auto mb-5 bg-gradient-to-br from-blue-50 to-white">
+                        <i class="ph-fill ph-user text-3xl text-primary"></i>
                     </div>
-                    <h3 class="font-semibold text-heading mb-2">Individuals</h3>
-                    <p class="text-sm text-secondary">Track personal finances and stick to budgets</p>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Individuals</h3>
+                    <p class="font-body text-secondary text-sm">Track personal finances and stick to budgets with ease</p>
                 </div>
 
-                <div class="bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl border border-gray-100 text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-friends text-2xl text-green-600"></i>
+                <div class="feature-card glass-card-strong p-8 rounded-3xl text-center reveal stagger-2">
+                    <div class="glass-icon w-18 h-18 w-[72px] h-[72px] rounded-2xl flex items-center justify-center mx-auto mb-5 bg-gradient-to-br from-emerald-50 to-white">
+                        <i class="ph-fill ph-users-three text-3xl text-emerald-500"></i>
                     </div>
-                    <h3 class="font-semibold text-heading mb-2">Friends & Groups</h3>
-                    <p class="text-sm text-secondary">Split expenses and settle up easily</p>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Friends & Groups</h3>
+                    <p class="font-body text-secondary text-sm">Split expenses and settle up easily together</p>
                 </div>
 
-                <div class="bg-gradient-to-br from-orange-50 to-white p-6 rounded-2xl border border-gray-100 text-center">
-                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-home text-2xl text-orange-500"></i>
+                <div class="feature-card glass-card-strong p-8 rounded-3xl text-center reveal stagger-3">
+                    <div class="glass-icon w-18 h-18 w-[72px] h-[72px] rounded-2xl flex items-center justify-center mx-auto mb-5 bg-gradient-to-br from-amber-50 to-white">
+                        <i class="ph-fill ph-house text-3xl text-amber-500"></i>
                     </div>
-                    <h3 class="font-semibold text-heading mb-2">Roommates</h3>
-                    <p class="text-sm text-secondary">Manage shared costs without confusion</p>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Roommates</h3>
+                    <p class="font-body text-secondary text-sm">Manage shared costs without any confusion</p>
                 </div>
 
-                <div class="bg-gradient-to-br from-purple-50 to-white p-6 rounded-2xl border border-gray-100 text-center">
-                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-graduation-cap text-2xl text-purple-600"></i>
+                <div class="feature-card glass-card-strong p-8 rounded-3xl text-center reveal stagger-4">
+                    <div class="glass-icon w-18 h-18 w-[72px] h-[72px] rounded-2xl flex items-center justify-center mx-auto mb-5 bg-gradient-to-br from-violet-50 to-white">
+                        <i class="ph-fill ph-graduation-cap text-3xl text-violet-500"></i>
                     </div>
-                    <h3 class="font-semibold text-heading mb-2">Students</h3>
-                    <p class="text-sm text-secondary">Budget limited funds wisely</p>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Students</h3>
+                    <p class="font-body text-secondary text-sm">Budget limited funds wisely and save more</p>
                 </div>
 
-                <div class="bg-gradient-to-br from-pink-50 to-white p-6 rounded-2xl border border-gray-100 text-center">
-                    <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-piggy-bank text-2xl text-pink-600"></i>
+                <div class="feature-card glass-card-strong p-8 rounded-3xl text-center reveal stagger-5">
+                    <div class="glass-icon w-18 h-18 w-[72px] h-[72px] rounded-2xl flex items-center justify-center mx-auto mb-5 bg-gradient-to-br from-pink-50 to-white">
+                        <i class="ph-fill ph-piggy-bank text-3xl text-pink-500"></i>
                     </div>
-                    <h3 class="font-semibold text-heading mb-2">Savers</h3>
-                    <p class="text-sm text-secondary">Achieve financial goals faster</p>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Savers</h3>
+                    <p class="font-body text-secondary text-sm">Achieve financial goals faster than ever</p>
                 </div>
 
-                <div class="bg-gradient-to-br from-teal-50 to-white p-6 rounded-2xl border border-gray-100 text-center">
-                    <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-briefcase text-2xl text-teal-600"></i>
+                <div class="feature-card glass-card-strong p-8 rounded-3xl text-center reveal stagger-6">
+                    <div class="glass-icon w-18 h-18 w-[72px] h-[72px] rounded-2xl flex items-center justify-center mx-auto mb-5 bg-gradient-to-br from-teal-50 to-white">
+                        <i class="ph-fill ph-briefcase text-3xl text-teal-500"></i>
                     </div>
-                    <h3 class="font-semibold text-heading mb-2">Professionals</h3>
-                    <p class="text-sm text-secondary">Manage multiple accounts effortlessly</p>
+                    <h3 class="font-display font-semibold text-heading text-lg mb-2">Professionals</h3>
+                    <p class="font-body text-secondary text-sm">Manage multiple accounts effortlessly</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="py-16 md:py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-heading mb-6 max-w-4xl mx-auto !leading-[1.3]">
+    <section id="reviews" class="py-20 md:py-28 mesh-gradient relative noise-overlay">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-primary font-display font-medium text-sm mb-6">
+                    <i class="ph-fill ph-star"></i>
+                    Testimonials
+                </span>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-heading mb-5 max-w-3xl mx-auto !leading-[1.2]">
                     Real People. Real Results.
                 </h2>
-                <p class="text-secondary">
+                <p class="font-body text-secondary text-lg">
                     Thousands trust Spenso for their personal finance needs
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Review 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                            <span class="text-primary font-semibold">A</span>
+                <div class="review-card glass-card-strong p-7 rounded-3xl reveal stagger-1">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                            <span class="font-display text-primary font-bold text-lg">A</span>
                         </div>
                         <div>
-                            <div class="font-semibold text-heading">Alex M.</div>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <div class="font-display font-semibold text-heading">Alex M.</div>
+                            <div class="flex text-amber-400 text-sm gap-0.5 mt-1">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
                             </div>
                         </div>
                     </div>
-                    <p class="text-secondary text-sm">Absolutely love this app! The UI is clean, the features are powerful, and splitting bills with friends has never been easier. Spenso made me finally stick to a budget!</p>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Absolutely love this app! The UI is clean, the features are powerful, and splitting bills with friends has never been easier. Spenso made me finally stick to a budget!</p>
                 </div>
 
                 <!-- Review 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                            <span class="text-green-600 font-semibold">S</span>
+                <div class="review-card glass-card-strong p-7 rounded-3xl reveal stagger-2">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center">
+                            <span class="font-display text-emerald-600 font-bold text-lg">S</span>
                         </div>
                         <div>
-                            <div class="font-semibold text-heading">Sarah K.</div>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <div class="font-display font-semibold text-heading">Sarah K.</div>
+                            <div class="flex text-amber-400 text-sm gap-0.5 mt-1">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
                             </div>
                         </div>
                     </div>
-                    <p class="text-secondary text-sm">Best expense tracker I've used. Simple, accurate, and the analytics are super helpful. The split bill feature is a game changer for group dinners!</p>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Best expense tracker I've used. Simple, accurate, and the analytics are super helpful. The split bill feature is a game changer for group dinners!</p>
                 </div>
 
                 <!-- Review 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                            <span class="text-orange-600 font-semibold">M</span>
+                <div class="review-card glass-card-strong p-7 rounded-3xl reveal stagger-3">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-500/5 flex items-center justify-center">
+                            <span class="font-display text-amber-600 font-bold text-lg">M</span>
                         </div>
                         <div>
-                            <div class="font-semibold text-heading">Mike R.</div>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <div class="font-display font-semibold text-heading">Mike R.</div>
+                            <div class="flex text-amber-400 text-sm gap-0.5 mt-1">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
                             </div>
                         </div>
                     </div>
-                    <p class="text-secondary text-sm">The budgeting system and notifications keep me on track every month. Highly recommended for anyone trying to save money and manage expenses!</p>
+                    <p class="font-body text-secondary text-sm leading-relaxed">The budgeting system and notifications keep me on track every month. Highly recommended for anyone trying to save money and manage expenses!</p>
                 </div>
 
                 <!-- Review 4 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                            <span class="text-purple-600 font-semibold">J</span>
+                <div class="review-card glass-card-strong p-7 rounded-3xl reveal stagger-4">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-500/5 flex items-center justify-center">
+                            <span class="font-display text-violet-600 font-bold text-lg">J</span>
                         </div>
                         <div>
-                            <div class="font-semibold text-heading">Jessica L.</div>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <div class="font-display font-semibold text-heading">Jessica L.</div>
+                            <div class="flex text-amber-400 text-sm gap-0.5 mt-1">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
                             </div>
                         </div>
                     </div>
-                    <p class="text-secondary text-sm">Spenso has replaced three different apps for me. Expense tracking, bill splitting, and budgets in one place—perfect! Clean design too.</p>
+                    <p class="font-body text-secondary text-sm leading-relaxed">Spenso has replaced three different apps for me. Expense tracking, bill splitting, and budgets in one place—perfect! Clean design too.</p>
                 </div>
 
                 <!-- Review 5 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
-                            <span class="text-pink-600 font-semibold">D</span>
+                <div class="review-card glass-card-strong p-7 rounded-3xl reveal stagger-5">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500/20 to-pink-500/5 flex items-center justify-center">
+                            <span class="font-display text-pink-600 font-bold text-lg">D</span>
                         </div>
                         <div>
-                            <div class="font-semibold text-heading">David P.</div>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <div class="font-display font-semibold text-heading">David P.</div>
+                            <div class="flex text-amber-400 text-sm gap-0.5 mt-1">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
                             </div>
                         </div>
                     </div>
-                    <p class="text-secondary text-sm">As a student, this app has helped me manage my rent, food, and travel expenses. The reminder system for recurring bills is very helpful!</p>
+                    <p class="font-body text-secondary text-sm leading-relaxed">As a student, this app has helped me manage my rent, food, and travel expenses. The reminder system for recurring bills is very helpful!</p>
                 </div>
 
                 <!-- Review 6 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center">
-                            <span class="text-teal-600 font-semibold">R</span>
+                <div class="review-card glass-card-strong p-7 rounded-3xl reveal stagger-6">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500/20 to-teal-500/5 flex items-center justify-center">
+                            <span class="font-display text-teal-600 font-bold text-lg">R</span>
                         </div>
                         <div>
-                            <div class="font-semibold text-heading">Rachel T.</div>
-                            <div class="flex text-yellow-400 text-sm">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <div class="font-display font-semibold text-heading">Rachel T.</div>
+                            <div class="flex text-amber-400 text-sm gap-0.5 mt-1">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
                             </div>
                         </div>
                     </div>
-                    <p class="text-secondary text-sm">The multi-account view is brilliant. I can check my credit card limits, balances, and due dates easily. Perfect money management tool for busy people!</p>
+                    <p class="font-body text-secondary text-sm leading-relaxed">The multi-account view is brilliant. I can check my credit card limits, balances, and due dates easily. Perfect money management tool for busy people!</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Why Choose Section -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="flex-1">
-                    <h2 class="text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-heading mb-6 max-w-4xl mx-auto !leading-[1.3]">
+    <section class="py-20 md:py-28 section-gradient relative noise-overlay">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="flex-1 reveal">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-primary font-display font-medium text-sm mb-6">
+                        <i class="ph-fill ph-trophy"></i>
+                        Why Spenso
+                    </span>
+                    <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-heading mb-6 !leading-[1.2]">
                         Why Choose Spenso?
                     </h2>
-                    <p class="text-secondary mb-8">
-                        Unlike other finance apps, Spenso combines personal expense tracking with social bill splitting and smart budget management in one seamless experience. No need to switch between apps.
+                    <p class="font-body text-secondary text-lg mb-10 leading-relaxed">
+                        Unlike other finance apps, Spenso combines personal expense tracking with social bill splitting and smart budget management in one seamless experience.
                     </p>
 
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4">
-                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-green-500 text-xs"></i>
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-4 group">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-check-circle text-xl text-emerald-500"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-heading">All-in-One Solution</h4>
-                                <p class="text-sm text-secondary">Track expenses, split bills, and manage budgets in one place</p>
+                                <h4 class="font-display font-semibold text-heading text-lg">All-in-One Solution</h4>
+                                <p class="font-body text-secondary text-sm mt-1">Track expenses, split bills, and manage budgets in one place</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-green-500 text-xs"></i>
+                        <div class="flex items-start gap-4 group">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-check-circle text-xl text-emerald-500"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-heading">100% Free Forever</h4>
-                                <p class="text-sm text-secondary">No hidden costs, no premium tiers, no ads—completely free</p>
+                                <h4 class="font-display font-semibold text-heading text-lg">100% Free Forever</h4>
+                                <p class="font-body text-secondary text-sm mt-1">No hidden costs, no premium tiers, no ads—completely free</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-green-500 text-xs"></i>
+                        <div class="flex items-start gap-4 group">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-check-circle text-xl text-emerald-500"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-heading">Privacy First</h4>
-                                <p class="text-sm text-secondary">No bank connections required—your data stays private</p>
+                                <h4 class="font-display font-semibold text-heading text-lg">Privacy First</h4>
+                                <p class="font-body text-secondary text-sm mt-1">No bank connections required—your data stays private</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-green-500 text-xs"></i>
+                        <div class="flex items-start gap-4 group">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-check-circle text-xl text-emerald-500"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-heading">Beautiful & Intuitive</h4>
-                                <p class="text-sm text-secondary">Clean design that's easy to use from day one</p>
+                                <h4 class="font-display font-semibold text-heading text-lg">Beautiful & Intuitive</h4>
+                                <p class="font-body text-secondary text-sm mt-1">Clean design that's easy to use from day one</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex-1 grid grid-cols-2 gap-4">
-                    <div class="bg-primary/5 p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-bold text-primary mb-2">10K+</div>
-                        <div class="text-sm text-secondary">Happy Users</div>
+                <div class="flex-1 grid grid-cols-2 gap-5 reveal">
+                    <div class="stats-card glass-card-strong p-8 rounded-3xl text-center transition-all hover:-translate-y-2">
+                        <div class="font-display text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent mb-2">10K+</div>
+                        <div class="font-body text-secondary text-sm">Happy Users</div>
                     </div>
-                    <div class="bg-green-50 p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-bold text-green-600 mb-2">4.8</div>
-                        <div class="text-sm text-secondary">App Rating</div>
+                    <div class="stats-card glass-card-strong p-8 rounded-3xl text-center transition-all hover:-translate-y-2">
+                        <div class="font-display text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent mb-2">4.8</div>
+                        <div class="font-body text-secondary text-sm">App Rating</div>
                     </div>
-                    <div class="bg-orange-50 p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-bold text-orange-500 mb-2">1M+</div>
-                        <div class="text-sm text-secondary">Bills Split</div>
+                    <div class="stats-card glass-card-strong p-8 rounded-3xl text-center transition-all hover:-translate-y-2">
+                        <div class="font-display text-4xl lg:text-5xl font-bold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent mb-2">1M+</div>
+                        <div class="font-body text-secondary text-sm">Bills Split</div>
                     </div>
-                    <div class="bg-purple-50 p-6 rounded-2xl text-center">
-                        <div class="text-4xl font-bold text-purple-600 mb-2">100%</div>
-                        <div class="text-sm text-secondary">Free</div>
+                    <div class="stats-card glass-card-strong p-8 rounded-3xl text-center transition-all hover:-translate-y-2">
+                        <div class="font-display text-4xl lg:text-5xl font-bold bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent mb-2">100%</div>
+                        <div class="font-body text-secondary text-sm">Free</div>
                     </div>
                 </div>
             </div>
@@ -620,15 +868,32 @@
 
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
-                <a href="terms.html" class="text-gray-400 hover:text-white transition-colors">Terms and Conditions</a>
-                <span class="text-gray-600">|</span>
-                <a href="privacy-policy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-            </div>
-            <div class="text-center text-sm">
-                <p>&copy; 2025 Spenso. All rights reserved. Made with <i class="fas fa-heart text-red-500"></i> for better finances.</p>
+    <footer class="bg-heading text-gray-400 py-16 relative overflow-hidden">
+        <!-- Subtle Background -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col items-center">
+                <!-- Logo -->
+                <img src="assets/logo-name.png" alt="Spenso Logo" class="h-8 mb-8 brightness-0 invert opacity-90">
+                
+                <!-- Links -->
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+                    <a href="terms.html" class="font-body text-gray-400 hover:text-white transition-colors">Terms and Conditions</a>
+                    <span class="hidden md:block text-gray-600">•</span>
+                    <a href="privacy-policy.html" class="font-body text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                </div>
+                
+                <!-- Divider -->
+                <div class="w-full max-w-md h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-8"></div>
+                
+                <!-- Copyright -->
+                <div class="text-center">
+                    <p class="font-body text-sm text-gray-500">&copy; 2025 Spenso. All rights reserved. Made with <i class="ph-fill ph-heart text-rose-500"></i> for better finances.</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -646,11 +911,11 @@
 
             if (window.scrollY > 20) {
                 navbar.classList.remove('bg-transparent');
-                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'border-b', 'border-gray-100', 'shadow-sm');
+                navbar.classList.add('glass-card-strong', 'shadow-sm');
                 navbarInner.classList.remove('py-5');
                 navbarInner.classList.add('py-3');
             } else {
-                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'border-b', 'border-gray-100', 'shadow-sm');
+                navbar.classList.remove('glass-card-strong', 'shadow-sm');
                 navbar.classList.add('bg-transparent');
                 navbarInner.classList.remove('py-3');
                 navbarInner.classList.add('py-5');
@@ -669,6 +934,24 @@
                 }
             });
         });
+        
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 100;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
     </script>
 </body>
 </html>
