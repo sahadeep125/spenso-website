@@ -8,41 +8,24 @@
     <title>Terms and Conditions - Spenso</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         tailwind.config = {
-            darkMode: 'media',
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
-                        primary: {
-                            DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
-                            light: 'rgb(var(--color-primary-light) / <alpha-value>)',
-                            dark: 'rgb(var(--color-primary-dark) / <alpha-value>)',
-                        },
-                        background: {
-                            DEFAULT: 'rgb(var(--color-background) / <alpha-value>)',
-                            secondary: 'rgb(var(--color-background-secondary) / <alpha-value>)',
-                        },
-                        surface: {
-                            DEFAULT: 'rgb(var(--color-surface) / <alpha-value>)',
-                            secondary: 'rgb(var(--color-surface-secondary) / <alpha-value>)',
-                        },
-                        text: {
-                            DEFAULT: 'rgb(var(--color-text) / <alpha-value>)',
-                            secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
-                            tertiary: 'rgb(var(--color-text-tertiary) / <alpha-value>)',
-                        },
-                        border: {
-                            DEFAULT: 'rgb(var(--color-border) / <alpha-value>)',
-                            light: 'rgb(var(--color-border-light) / <alpha-value>)',
-                        },
-                        button: {
-                            primary: 'rgb(var(--color-button-primary) / <alpha-value>)',
+                        primary: '#0039A4',
+                        heading: '#0A0A28',
+                        secondary: '#707C90',
+                        lightBg: '#F0F4FF',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
                         }
                     }
                 }
@@ -50,118 +33,93 @@
         }
     </script>
     <style>
-        :root {
-            /* Light Mode Colors */
-            --color-primary: 0 57 164;
-            --color-primary-light: 52 94 195;
-            --color-primary-dark: 0 45 128;
-
-            --color-background: 245 247 250;
-            --color-background-secondary: 237 241 245;
-
-            --color-surface: 255 255 255;
-            --color-surface-secondary: 250 251 252;
-
-            --color-text: 10 10 40;
-            --color-text-secondary: 112 124 144;
-            --color-text-tertiary: 154 163 181;
-
-            --color-border: 208 215 226;
-            --color-border-light: 227 232 238;
-            
-            --color-button-primary: 0 57 164;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                /* Dark Mode Colors */
-                --color-primary: 128 172 255;
-                --color-primary-light: 179 205 255;
-                --color-primary-dark: 77 139 255;
-
-                --color-background: 12 17 31;
-                --color-background-secondary: 20 26 43;
-
-                --color-surface: 24 32 56;
-                --color-surface-secondary: 31 40 66;
-
-                --color-text: 255 255 255;
-                --color-text-secondary: 213 217 227;
-                --color-text-tertiary: 166 174 193;
-
-                --color-border: 46 56 83;
-                --color-border-light: 59 70 100;
-                
-                --color-button-primary: 52 94 195;
-            }
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgb(var(--color-background)); }
-        ::-webkit-scrollbar-thumb { background: rgb(var(--color-primary-light)); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-primary)); }
+        .gradient-bg { background: linear-gradient(135deg, #E8EFFF 0%, #F8FAFF 50%, #EEF4FF 100%); }
+        .phone-shadow { box-shadow: 0 25px 50px -12px rgba(0, 57, 164, 0.25); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -15px rgba(0, 57, 164, 0.2); }
     </style>
 </head>
-<body class="min-h-screen bg-background font-sans text-text selection:bg-primary-light selection:text-white">
+<body class="bg-white">
 
-    <!-- Navbar -->
-    <nav class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 border-b border-border-light">
+    <!-- Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 bg-transparent z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-                    <img src="assets/logo.png" alt="Spenso Logo" class="h-10 w-auto">
-                    <span class="font-bold text-xl text-text tracking-tight">Spenso</span>
-                </a>
-                
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-text-secondary hover:text-primary font-medium text-sm transition-colors">Home</a>
-                    <a href="index.html#features" class="text-text-secondary hover:text-primary font-medium text-sm transition-colors">Features</a>
-                    <a href="terms.html" class="text-primary font-medium text-sm transition-colors">Terms</a>
+            <div class="flex items-center justify-between py-5 transition-all duration-300">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <img src="assets/logo-name.png" alt="Spenso Logo" class="h-6 hidden md:block">
+
                 </div>
 
-                <div class="hidden md:flex">
-                    <button class="bg-text text-surface px-5 py-2.5 rounded-full text-sm font-medium hover:bg-text/80 transition-colors flex items-center gap-1 group">
-                        Get Started
-                        <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
-                    </button>
-                </div>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="index.html#features" class="text-secondary hover:text-primary transition-colors">Features</a>
+                    <a href="index.html#how-it-works" class="text-secondary hover:text-primary transition-colors">How It Works</a>
+                    <a href="index.html#reviews" class="text-secondary hover:text-primary transition-colors">Reviews</a>
+                    <a href="index.html#download" class="text-secondary hover:text-primary transition-colors">Download</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <a href="index.html#download" class="hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-medium hover:bg-primary/90 transition-colors">
+                    <i class="fab fa-google-play text-sm"></i>
+                    Get the App
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-heading" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
-    </nav>
 
-    <div class="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div class="bg-surface rounded-3xl p-8 md:p-12 shadow-sm border border-border-light">
-            <h1 class="text-4xl font-bold text-primary mb-8">Terms & Conditions</h1>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-4 space-y-3">
+                <a href="index.html" class="block py-2 text-secondary hover:text-primary">Home</a>
+                <a href="index.html#features" class="block py-2 text-secondary hover:text-primary">Features</a>
+                <a href="index.html#how-it-works" class="block py-2 text-secondary hover:text-primary">How It Works</a>
+                <a href="index.html#reviews" class="block py-2 text-secondary hover:text-primary">Reviews</a>
+                <a href="index.html#download" class="block py-2 text-secondary hover:text-primary">Download</a>
+                <a href="index.html#download" class="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 rounded-full font-medium mt-4">
+                    <i class="fab fa-google-play"></i>
+                    Get the App
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100">
+            <h1 class="text-3xl md:text-4xl font-bold text-heading mb-8">Terms & Conditions</h1>
 
             <div class="space-y-6">
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     These terms and conditions apply to the Spenso app (hereby referred to as "Application") for mobile devices that was created by Deep saha (hereby referred to as "Service Provider") as an Ad Supported service.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     Upon downloading or utilizing the Application, you are automatically agreeing to the following terms. It is strongly advised that you thoroughly read and understand these terms prior to using the Application.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     Unauthorized copying, modification of the Application, any part of the Application, or our trademarks is strictly prohibited. Any attempts to extract the source code of the Application, translate the Application into other languages, or create derivative versions are not permitted. All trademarks, copyrights, database rights, and other intellectual property rights related to the Application remain the property of the Service Provider.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     The Service Provider is dedicated to ensuring that the Application is as beneficial and efficient as possible. As such, they reserve the right to modify the Application or charge for their services at any time and for any reason. The Service Provider assures you that any charges for the Application or its services will be clearly communicated to you.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     The Application stores and processes personal data that you have provided to the Service Provider in order to provide the Service. It is your responsibility to maintain the security of your phone and access to the Application. The Service Provider strongly advise against jailbreaking or rooting your phone, which involves removing software restrictions and limitations imposed by the official operating system of your device. Such actions could expose your phone to malware, viruses, malicious programs, compromise your phone's security features, and may result in the Application not functioning correctly or at all.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     Please note that the Application utilizes third-party services that have their own Terms and Conditions. Below are the links to the Terms and Conditions of the third-party service providers used by the Application:
                 </p>
 
-                <ul class="list-disc pl-6 space-y-2 text-text-secondary mb-6">
+                <ul class="list-disc pl-6 space-y-2 text-secondary mb-6">
                     <li><a href="https://policies.google.com/terms" class="text-primary hover:underline" target="_blank">Google Play Services</a></li>
                     <li><a href="https://developers.google.com/admob/terms" class="text-primary hover:underline" target="_blank">AdMob</a></li>
                     <li><a href="https://www.google.com/analytics/terms/" class="text-primary hover:underline" target="_blank">Google Analytics for Firebase</a></li>
@@ -169,37 +127,37 @@
                     <li><a href="https://posthog.com/terms" class="text-primary hover:underline" target="_blank">PostHog</a></li>
                 </ul>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     Please be aware that the Service Provider does not assume responsibility for certain aspects. Some functions of the Application require an active internet connection, which can be Wi-Fi or provided by your mobile network provider. The Service Provider cannot be held responsible if the Application does not function at full capacity due to lack of access to Wi-Fi or if you have exhausted your data allowance.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     If you are using the application outside of a Wi-Fi area, please be aware that your mobile network provider's agreement terms still apply. Consequently, you may incur charges from your mobile provider for data usage during the connection to the application, or other third-party charges. By using the application, you accept responsibility for any such charges, including roaming data charges if you use the application outside of your home territory (i.e., region or country) without disabling data roaming. If you are not the bill payer for the device on which you are using the application, they assume that you have obtained permission from the bill payer.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     Similarly, the Service Provider cannot always assume responsibility for your usage of the application. For instance, it is your responsibility to ensure that your device remains charged. If your device runs out of battery and you are unable to access the Service, the Service Provider cannot be held responsible.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     In terms of the Service Provider's responsibility for your use of the application, it is important to note that while they strive to ensure that it is updated and accurate at all times, they do rely on third parties to provide information to them so that they can make it available to you. The Service Provider accepts no liability for any loss, direct or indirect, that you experience as a result of relying entirely on this functionality of the application.
                 </p>
 
-                <p class="text-text-secondary leading-relaxed mb-6">
+                <p class="text-secondary leading-relaxed mb-6">
                     The Service Provider may wish to update the application at some point. The application is currently available as per the requirements for the operating system (and for any additional systems they decide to extend the availability of the application to) may change, and you will need to download the updates if you want to continue using the application. The Service Provider does not guarantee that it will always update the application so that it is relevant to you and/or compatible with the particular operating system version installed on your device. However, you agree to always accept updates to the application when offered to you. The Service Provider may also wish to cease providing the application and may terminate its use at any time without providing termination notice to you. Unless they inform you otherwise, upon any termination, (a) the rights and licenses granted to you in these terms will end; (b) you must cease using the application, and (if necessary) delete it from your device.
                 </p>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-text mb-4">Changes to These Terms and Conditions</h2>
-                    <p class="text-text-secondary leading-relaxed mb-4">
+                    <h2 class="text-2xl font-bold text-heading mb-4">Changes to These Terms and Conditions</h2>
+                    <p class="text-secondary leading-relaxed mb-4">
                         The Service Provider may periodically update their Terms and Conditions. Therefore, you are advised to review this page regularly for any changes. The Service Provider will notify you of any changes by posting the new Terms and Conditions on this page.
                     </p>
-                    <p class="text-text-tertiary italic">These terms and conditions are effective as of 2025-12-03</p>
+                    <p class="text-secondary italic">These terms and conditions are effective as of 2025-12-03</p>
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-text mb-4">Contact Us</h2>
-                    <p class="text-text-secondary leading-relaxed mb-4">
+                    <h2 class="text-2xl font-bold text-heading mb-4">Contact Us</h2>
+                    <p class="text-secondary leading-relaxed mb-4">
                         If you have any questions or suggestions about the Terms and Conditions, please do not hesitate to contact the Service Provider at <a href="mailto:sahadeep125@gmail.com" class="text-primary hover:underline">sahadeep125@gmail.com</a>.
                     </p>
                 </section>
@@ -208,42 +166,54 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-surface pt-12 pb-8 border-t border-border-light">
+    <footer class="bg-gray-900 text-gray-400 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-12 gap-12 border-b border-border-light pb-12">
-                <div class="md:col-span-5">
-                    <div class="flex items-center gap-2 mb-6">
-                        <img src="assets/logo.png" alt="Spenso Logo" class="h-8 w-auto">
-                        <span class="font-bold text-lg text-text">Spenso</span>
-                    </div>
-                    <p class="text-text-tertiary text-sm mb-8 max-w-xs">Your complete personal finance companion for a healthier, organized financial life.</p>
-                </div>
-
-                <div class="md:col-span-2">
-                    <h4 class="font-bold text-text mb-6 text-sm">Legal</h4>
-                    <ul class="space-y-4 text-sm text-text-tertiary">
-                        <li><a href="privacy-policy.html" class="hover:text-primary">Privacy Policy</a></li>
-                        <li><a href="terms.html" class="hover:text-primary">Terms of Conditions</a></li>
-                    </ul>
-                </div>
-
-                <div class="md:col-span-2">
-                    <h4 class="font-bold text-text mb-6 text-sm">Contact</h4>
-                    <ul class="space-y-4 text-sm text-text-tertiary">
-                        <li><a href="mailto:sahadeep125@gmail.com" class="hover:text-primary">sahadeep125@gmail.com</a></li>
-                    </ul>
-                </div>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
+                <a href="terms.html" class="text-gray-400 hover:text-white transition-colors">Terms and Conditions</a>
+                <span class="text-gray-600">|</span>
+                <a href="privacy-policy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
             </div>
-
-            <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="text-xs text-text-tertiary">
-                    @2025 Spenso - All Rights Reserved
-                </div>
+            <div class="text-center text-sm">
+                <p>&copy; 2025 Spenso. All rights reserved. Made with <i class="fas fa-heart text-red-500"></i> for better finances.</p>
             </div>
         </div>
     </footer>
     <script>
-        lucide.createIcons();
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Navbar scroll behavior
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const navbarInner = navbar.querySelector('div > div');
+
+            if (window.scrollY > 20) {
+                navbar.classList.remove('bg-transparent');
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'border-b', 'border-gray-100', 'shadow-sm');
+                navbarInner.classList.remove('py-5');
+                navbarInner.classList.add('py-3');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'border-b', 'border-gray-100', 'shadow-sm');
+                navbar.classList.add('bg-transparent');
+                navbarInner.classList.remove('py-3');
+                navbarInner.classList.add('py-5');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
     </script>
 </body>
 </html>
