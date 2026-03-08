@@ -60,6 +60,7 @@
                     <a href="index.html#how-it-works" class="text-secondary hover:text-primary transition-colors">How It Works</a>
                     <a href="index.html#reviews" class="text-secondary hover:text-primary transition-colors">Reviews</a>
                     <a href="index.html#download" class="text-secondary hover:text-primary transition-colors">Download</a>
+                    <a href="support.html" class="text-secondary hover:text-primary transition-colors">Support</a>
                 </nav>
 
                 <!-- CTA Button -->
@@ -83,6 +84,7 @@
                 <a href="index.html#how-it-works" class="block py-2 text-secondary hover:text-primary">How It Works</a>
                 <a href="index.html#reviews" class="block py-2 text-secondary hover:text-primary">Reviews</a>
                 <a href="index.html#download" class="block py-2 text-secondary hover:text-primary">Download</a>
+                <a href="support.html" class="block py-2 text-secondary hover:text-primary">Support</a>
                 <a href="https://play.google.com/store/apps/details?id=com.deep125.spenso" target="_blank" class="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 rounded-full font-medium mt-4">
                     <i class="fab fa-google-play"></i>
                     Get the App
@@ -103,7 +105,30 @@
                 <section>
                     <h2 class="text-2xl font-bold text-heading mb-4">Information Collection and Use</h2>
                     <p class="text-secondary leading-relaxed mb-4">
-                        The Application collects information when you download and use it. This information may include information such as
+                        The Application collects information when you download and use it. Below is a comprehensive list of all data collected by each service used in the Application:
+                    </p>
+
+                    <div class="overflow-x-auto mb-6">
+                        <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden">
+                            <thead class="bg-lightBg">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-heading font-semibold">SDK / Service</th>
+                                    <th class="px-4 py-3 text-left text-heading font-semibold">Data Collected</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-secondary">
+                                <tr class="border-t border-gray-200"><td class="px-4 py-3">Supabase Auth</td><td class="px-4 py-3">Email, name, password, profile picture</td></tr>
+                                <tr class="border-t border-gray-200"><td class="px-4 py-3">Google Sign-In</td><td class="px-4 py-3">Email, name, profile picture</td></tr>
+                                <tr class="border-t border-gray-200"><td class="px-4 py-3">Facebook SDK</td><td class="px-4 py-3">Device identifiers (IDFA), usage analytics, purchase events</td></tr>
+                                <tr class="border-t border-gray-200"><td class="px-4 py-3">PostHog Analytics</td><td class="px-4 py-3">Screen views, user behavior, device info</td></tr>
+                                <tr class="border-t border-gray-200"><td class="px-4 py-3">Google Mobile Ads (AdMob)</td><td class="px-4 py-3">Device identifiers, usage data for ad targeting</td></tr>
+                                <tr class="border-t border-gray-200"><td class="px-4 py-3">RevenueCat</td><td class="px-4 py-3">Purchase history, subscription status</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="text-secondary leading-relaxed mb-4">
+                        The Application also collects general usage information including:
                     </p>
                     <ul class="list-disc pl-6 space-y-2 text-secondary mb-6">
                         <li>Your device's Internet Protocol address (e.g. IP address)</li>
@@ -126,28 +151,54 @@
                         <li><strong class="text-heading">Third-Party Services:</strong> Periodically, the Service Provider may transmit anonymized location data to external services. These services assist them in enhancing the Application and optimizing their offerings.</li>
                     </ul>
 
+                    <h3 class="text-xl font-semibold text-heading mt-6 mb-3">Facebook SDK Data Collection</h3>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        The Application uses the Facebook SDK, which may collect device identifiers including the Identifier for Advertisers (IDFA) on iOS devices. This data is used for usage analytics and to measure purchase events. The Facebook SDK helps us understand how users interact with the Application and may be used for advertising purposes. You can limit ad tracking in your device settings.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-heading mt-6 mb-3">PostHog Analytics Data Collection</h3>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        PostHog collects screen views, user behavior patterns, and device information (such as device type and operating system) to help us improve the Application experience. This analytics data is used to understand feature usage, identify issues, and make informed product decisions.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-heading mt-6 mb-3">Google Mobile Ads (AdMob) Data Collection</h3>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Google AdMob collects device identifiers and usage data to deliver personalized advertisements and measure ad performance. This may include information about the ads you view, interactions with ads, and general app usage patterns for ad targeting purposes.
+                    </p>
+
                     <p class="text-secondary leading-relaxed mb-4">
                         The Service Provider may use the information you provided to contact you from time to time to provide you with important information, required notices and marketing promotions.
                     </p>
 
                     <p class="text-secondary leading-relaxed">
-                        For a better experience, while using the Application, the Service Provider may require you to provide us with certain personally identifiable information, including but not limited to email, full name. The information that the Service Provider request will be retained by them and used as described in this privacy policy.
+                        For a better experience, while using the Application, the Service Provider may require you to provide us with certain personally identifiable information, including but not limited to email, full name, and profile picture. The information that the Service Provider request will be retained by them and used as described in this privacy policy.
                     </p>
                 </section>
 
                 <section>
                     <h2 class="text-2xl font-bold text-heading mb-4">Third Party Access</h2>
                     <p class="text-secondary leading-relaxed mb-4">
-                        Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.
+                        The Application shares data with the following third-party services that receive user data. Each service collects data as described in the table above and has its own privacy practices:
                     </p>
+
+                    <ul class="list-disc pl-6 space-y-2 text-secondary mb-4">
+                        <li><strong class="text-heading">Supabase</strong> — Authentication and data storage (email, name, password, profile picture)</li>
+                        <li><strong class="text-heading">Google Sign-In</strong> — OAuth authentication (email, name, profile picture)</li>
+                        <li><strong class="text-heading">Facebook SDK</strong> — Analytics and advertising (IDFA, usage analytics, purchase events)</li>
+                        <li><strong class="text-heading">PostHog</strong> — Product analytics (screen views, user behavior, device info)</li>
+                        <li><strong class="text-heading">Google Mobile Ads (AdMob)</strong> — Advertising (device identifiers, usage data for ad targeting)</li>
+                        <li><strong class="text-heading">RevenueCat</strong> — Subscription management (purchase history, subscription status)</li>
+                    </ul>
 
                     <p class="text-secondary leading-relaxed mb-4">
                         Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are the links to the Privacy Policy of the third-party service providers used by the Application:
                     </p>
 
                     <ul class="list-disc pl-6 space-y-2 text-secondary mb-6">
-                        <li><a href="https://www.google.com/policies/privacy/" class="text-primary hover:underline" target="_blank">Google Play Services</a></li>
-                        <li><a href="https://support.google.com/admob/answer/6128543?hl=en" class="text-primary hover:underline" target="_blank">AdMob</a></li>
+                        <li><a href="https://supabase.com/privacy" class="text-primary hover:underline" target="_blank">Supabase</a></li>
+                        <li><a href="https://www.google.com/policies/privacy/" class="text-primary hover:underline" target="_blank">Google Play Services / Google Sign-In</a></li>
+                        <li><a href="https://www.facebook.com/privacy/policy/" class="text-primary hover:underline" target="_blank">Facebook / Meta</a></li>
+                        <li><a href="https://support.google.com/admob/answer/6128543?hl=en" class="text-primary hover:underline" target="_blank">Google AdMob</a></li>
                         <li><a href="https://firebase.google.com/support/privacy" class="text-primary hover:underline" target="_blank">Google Analytics for Firebase</a></li>
                         <li><a href="https://www.revenuecat.com/privacy" class="text-primary hover:underline" target="_blank">RevenueCat</a></li>
                         <li><a href="https://posthog.com/privacy" class="text-primary hover:underline" target="_blank">PostHog</a></li>
@@ -162,16 +213,70 @@
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-heading mb-4">Opt-Out Rights</h2>
+                    <h2 class="text-2xl font-bold text-heading mb-4">Data Retention and Deletion Policy</h2>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter (typically up to 30 days after account deletion for backup and legal compliance purposes). Automatically collected analytics and advertising data may be retained by third-party services according to their respective retention policies.
+                    </p>
                     <p class="text-secondary leading-relaxed">
-                        You can stop all collection of information by the Application easily by uninstalling it. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.
+                        Upon your request for deletion, we will remove or anonymize your personal data from our systems within 30 days. Note that third-party services (Facebook, Google, PostHog, RevenueCat) may retain data according to their own policies; we recommend reviewing their privacy policies for deletion options.
                     </p>
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold text-heading mb-4">Data Retention Policy</h2>
+                    <h2 class="text-2xl font-bold text-heading mb-4">How to Request Data Deletion</h2>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        You have the right to request deletion of your account and associated data at any time. You can do this in two ways:
+                    </p>
+                    <h3 class="text-xl font-semibold text-heading mb-3">Option 1: In-App Account Deletion</h3>
+                    <ol class="list-decimal pl-6 space-y-2 text-secondary mb-4">
+                        <li>Open the <strong class="text-heading">Spenso</strong> application on your phone.</li>
+                        <li>Log in to your account.</li>
+                        <li>After logging in, you will be redirected to the <strong class="text-heading">home screen</strong>.</li>
+                        <li>Tap on <strong class="text-heading">More</strong> in the bottom bar.</li>
+                        <li>The <strong class="text-heading">Settings screen</strong> will open—scroll to the bottom.</li>
+                        <li>Tap on <strong class="text-heading">Delete Your Account</strong> to proceed.</li>
+                    </ol>
+                    <h3 class="text-xl font-semibold text-heading mb-3">Option 2: Request via Form</h3>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        You may also submit an account deletion request through our official form. Fill out the form to initiate the deletion process:
+                    </p>
+                    <p class="mb-4">
+                        <a href="https://docs.google.com/forms/d/12Cm8R7Allv0afiBlSfEQswVpU2v7DWGVcNEM5b4A4NM/viewform" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors" target="_blank" rel="noopener noreferrer">
+                            Delete Account Request Form
+                        </a>
+                    </p>
                     <p class="text-secondary leading-relaxed">
-                        The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at sahadeep125@gmail.com and they will respond in a reasonable time.
+                        If you need assistance with the deletion process or have any questions, contact us at <a href="mailto:sahadeep125@gmail.com" class="text-primary hover:underline">sahadeep125@gmail.com</a>. We will respond within a reasonable timeframe (typically within 30 days).
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-heading mb-4">Revoking Consent & Your Rights</h2>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        You can revoke your consent and stop all collection of information by the Application by:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 text-secondary mb-4">
+                        <li>Using the in-app "Delete Your Account" option or submitting the <a href="https://docs.google.com/forms/d/12Cm8R7Allv0afiBlSfEQswVpU2v7DWGVcNEM5b4A4NM/viewform" class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Delete Account Request Form</a></li>
+                        <li>Uninstalling the Application using the standard uninstall processes available on your mobile device or via the mobile application marketplace</li>
+                        <li>Limiting ad tracking in your device settings (Settings → Privacy → Advertising)</li>
+                    </ul>
+                    <p class="text-secondary leading-relaxed">
+                        You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-heading mb-4">Regulatory Compliance</h2>
+                    <p class="text-secondary leading-relaxed mb-4">
+                        The Service Provider is committed to complying with applicable data protection laws:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 text-secondary mb-4">
+                        <li><strong class="text-heading">GDPR (EU/EEA):</strong> Users in the European Union have the right to access, rectify, erase, restrict processing, data portability, and object to processing. You may exercise these rights by contacting us or using the deletion options above.</li>
+                        <li><strong class="text-heading">CCPA (California):</strong> California residents have the right to know what data we collect, request deletion, opt-out of sale (we do not sell personal information), and non-discrimination for exercising these rights.</li>
+                        <li><strong class="text-heading">COPPA:</strong> The Application does not knowingly collect information from children under 13. We comply with the Children's Online Privacy Protection Act by not soliciting or marketing to children under 13.</li>
+                    </ul>
+                    <p class="text-secondary leading-relaxed">
+                        To exercise your rights under these regulations, contact us at <a href="mailto:sahadeep125@gmail.com" class="text-primary hover:underline">sahadeep125@gmail.com</a> or use the Delete Account Request Form.
                     </p>
                 </section>
 
